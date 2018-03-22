@@ -1,4 +1,5 @@
 'use strict';
+const { SpecReporter } = require('jasmine-spec-reporter');
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = {
     framework: 'jasmine',
@@ -14,9 +15,11 @@ exports.config = {
         showColors: true,
         defaultTimeoutInterval: 30000,
         print: function () { }
-    } /*,
+    } ,
     onPrepare: () => {
-        let SpecReporter = require('jasmine-spec-reporter');
-        jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
-    }*/
-};
+        require('ts-node').register({
+            project: 'tsconfig.json'
+        });
+        jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+    }
+}
